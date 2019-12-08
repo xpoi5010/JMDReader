@@ -1,0 +1,16 @@
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\bin\Debug\JmdLibrary.dll
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\bin\Debug\JmdLibrary.pdb
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\bin\Debug\Zlib.Portable.dll
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\bin\Debug\Zlib.Portable.xml
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\obj\Debug\RaycityFileLibrary.csprojAssemblyReference.cache
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\obj\Debug\RaycityFileLibrary.csproj.CopyComplete
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\obj\Debug\JmdLibrary.dll
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\obj\Debug\JmdLibrary.pdb
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\JMDReader\RaycityFileLibrary\bin\Debug\JmdLibrary.dll
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\JMDReader\RaycityFileLibrary\bin\Debug\JmdLibrary.pdb
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\JMDReader\RaycityFileLibrary\bin\Debug\Zlib.Portable.dll
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\JMDReader\RaycityFileLibrary\bin\Debug\Zlib.Portable.xml
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\JMDReader\RaycityFileLibrary\obj\Debug\RaycityFileLibrary.csprojAssemblyReference.cache
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\JMDReader\RaycityFileLibrary\obj\Debug\RaycityFileLibrary.csproj.CopyComplete
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\JMDReader\RaycityFileLibrary\obj\Debug\JmdLibrary.dll
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\JMDReader\RaycityFileLibrary\obj\Debug\JmdLibrary.pdb
