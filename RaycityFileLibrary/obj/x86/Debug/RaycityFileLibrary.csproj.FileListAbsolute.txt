@@ -1,0 +1,8 @@
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\bin\x86\Debug\JmdLibrary.dll
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\bin\x86\Debug\JmdLibrary.pdb
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\bin\x86\Debug\Zlib.Portable.dll
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\bin\x86\Debug\Zlib.Portable.xml
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\obj\x86\Debug\RaycityFileLibrary.csprojAssemblyReference.cache
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\obj\x86\Debug\RaycityFileLibrary.csproj.CopyComplete
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\obj\x86\Debug\JmdLibrary.dll
+C:\Users\xpoi5\OneDrive\SourceCode\2018年總開發\2018.08月程式開發\JMDReader\RaycityFileLibrary\obj\x86\Debug\JmdLibrary.pdb

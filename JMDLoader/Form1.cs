@@ -27,6 +27,8 @@ namespace JMDLoader
             listView1.SmallImageList.Images.Add("folder", new Bitmap(global::JMDLoader.Properties.Resources.baseline_folder_black_18dp));
         }
         JMDFile BaseJMDFile;
+
+        bool Changed = false;
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if(openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -55,6 +57,7 @@ namespace JMDLoader
             this.menuLanguagesToolStripMenuItem.Text = ((string)this.menuLanguagesToolStripMenuItem.Tag).GetStringBag();
             this.convertToPngToolStripMenuItem.Text = ((string)this.convertToPngToolStripMenuItem.Tag).GetStringBag();
             this.menuexportnowToolStripMenuItem.Text = ((string)this.menuexportnowToolStripMenuItem.Tag).GetStringBag();
+            this.filemenumodifyToolStripMenuItem.Text = ((string)this.filemenumodifyToolStripMenuItem.Tag).GetStringBag();
             if (!(BaseJMDFile is null))
                 UpdateFolders();
         }
@@ -92,6 +95,11 @@ namespace JMDLoader
             {
                 Random rm = new Random();
                 JMDPackedFileInfo fileInfo = (JMDPackedFileInfo)Array.Find(BaseJMDFile.NowFolderContent, x => x.Type == ObjectType.File && (((JMDPackedFileInfo)x).FileName + $".{((JMDPackedFileInfo)x).Extension}") == lvii.Text);
+                if(BaseJMDFile.ModifiedFileInfos.Exists(x => x.FileIndex == fileInfo.Index))
+                {
+                    MessageBox.Show("message_filemodified".GetStringBag(), "title".GetStringBag(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 if(fileInfo.Extension == "dds" || fileInfo.Extension == "tga")
                 {
                     TgaDDsViewer tdv = new TgaDDsViewer();
@@ -130,12 +138,18 @@ namespace JMDLoader
                     JMDPackedFileInfo jpfi = (JMDPackedFileInfo)ipo;
                     lvi = new ListViewItem(new string[] { jpfi.FileName + '.' + jpfi.Extension, $"0x{Convert.ToString(jpfi.Index, 16).PadLeft(8, '0')}", ("listview_item2_file").GetStringBag() });
                     lvi.ImageKey = "file";
+                    if (BaseJMDFile.ModifiedFileInfos.Exists(x => x.FileIndex == jpfi.Index))
+                        lvi.BackColor = Color.Red;
+
                 }
                 else
                 {
                     JMDPackedFolderInfo jpfi = (JMDPackedFolderInfo)ipo;
                     lvi = new ListViewItem(new string[] { jpfi.FolderName, $"0x{Convert.ToString(jpfi.Index, 16).PadLeft(8, '0')}", ("listview_item2_folder").GetStringBag() });
                     lvi.ImageKey = "folder";
+                    if (BaseJMDFile.ModifiedFileInfos.Exists(x => x.FolderIndex == jpfi.Index))
+                        lvi.BackColor = Color.Orange;
+
                 }
                 lists.Add(lvi);
             }
@@ -173,6 +187,16 @@ namespace JMDLoader
             } 
         }
 
+        private bool HaveChangedFolder(uint index)
+        {
+            return BaseJMDFile.ModifiedFileInfos.Exists(x => x.FolderIndex == index);
+        }
+
+        private bool HaveChangedFile(uint index)
+        {
+            return BaseJMDFile.ModifiedFileInfos.Exists(x => x.FileIndex == index);
+        }
+
         private void listView1_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
             //e.Graphics.DrawImage(global::JMDLoader.Properties.Resources.baseline_insert_drive_file_black_18dp,new Point(0,0));
@@ -182,6 +206,11 @@ namespace JMDLoader
         {
             if (!CheckOpenStatus())
                 MessageBox.Show(("msg_PlzOpenJMDFileFirst").GetStringBag(), ("title").GetStringBag(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (HaveChangedFolder(BaseJMDFile.NowFolder.Index))
+            {
+                MessageBox.Show("message_foldermodified_export".GetStringBag(), "title".GetStringBag(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             //Debug
             if(fbd.ShowDialog() == DialogResult.OK)
             {
@@ -206,6 +235,12 @@ namespace JMDLoader
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             JMDPackedFileInfo fileInfo = (JMDPackedFileInfo)Array.Find(BaseJMDFile.NowFolderContent, x => x.Type == ObjectType.File && (((JMDPackedFileInfo)x).FileName + $".{((JMDPackedFileInfo)x).Extension}") == listView1.SelectedItems[0].SubItems[0].Text);
+
+            if (HaveChangedFile(fileInfo.Index))
+            {
+                MessageBox.Show("message_filemodified_export".GetStringBag(), "title".GetStringBag(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             ofd.Filter = "AllFiles|*.*";
             ofd.FileName = $"{fileInfo.FileName}.{fileInfo.Extension}";
             if(ofd.ShowDialog() == DialogResult.OK)
@@ -222,6 +257,11 @@ namespace JMDLoader
         {
             if (!CheckOpenStatus())
                 MessageBox.Show(("msg_PlzOpenJMDFileFirst").GetStringBag(), ("title").GetStringBag(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (HaveChangedFolder(BaseJMDFile.NowFolder.Index))
+            {
+                MessageBox.Show("message_foldermodified_export".GetStringBag(), "title".GetStringBag(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             //Debug
             if (fbd.ShowDialog() == DialogResult.OK)
             {
@@ -234,12 +274,74 @@ namespace JMDLoader
         private void convertToPngToolStripMenuItem_Click(object sender, EventArgs e)
         {
             JMDPackedFileInfo fileInfo = (JMDPackedFileInfo)Array.Find(BaseJMDFile.NowFolderContent, x => x.Type == ObjectType.File && (((JMDPackedFileInfo)x).FileName + $".{((JMDPackedFileInfo)x).Extension}") == listView1.SelectedItems[0].SubItems[0].Text);
+
+            if (HaveChangedFile(fileInfo.Index))
+            {
+                MessageBox.Show("message_filemodified_convertPNG".GetStringBag(), "title".GetStringBag(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             byte[] a = BaseJMDFile.GetPackedFile(fileInfo);
             TgaDDsViewer t = new TgaDDsViewer();
             t.Data = a;
             t.ConvertTGADDSToPng();
             a = null;
             
+        }
+
+        private void filemenumodifyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            JMDPackedFileInfo fileInfo = (JMDPackedFileInfo)Array.Find(BaseJMDFile.NowFolderContent, x => x.Type == ObjectType.File && (((JMDPackedFileInfo)x).FileName + $".{((JMDPackedFileInfo)x).Extension}") == listView1.SelectedItems[0].SubItems[0].Text);
+            //BaseJMDFile.ModifyDataStream(fileInfo.FileName,)
+            OpenFileDialog offd = new OpenFileDialog()
+            {
+                Filter = "AllFiles|*.*",
+            };
+            if(offd.ShowDialog() == DialogResult.OK)
+            {
+                BaseJMDFile.ModifyDataStream(fileInfo.FileName, offd.FileName);
+                listView1.SelectedItems[0].BackColor = Color.Red;
+                Changed = true;
+            }
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ofd.Filter = "JMDFile|*.jmd";
+            if (MessageBox.Show("msg_saveMsg".GetStringBag(),"title".GetStringBag(),MessageBoxButtons.YesNo,MessageBoxIcon.Question)== DialogResult.Yes && ofd.ShowDialog() == DialogResult.OK)
+            {
+                BaseJMDFile.ApplyModification(ofd.FileName);
+
+                Changed = false;
+
+                UpdateFolders();
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!Changed)
+                return;
+            DialogResult dr = MessageBox.Show("msg_exitsaving".GetStringBag(), "title".GetStringBag(), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(dr == DialogResult.Yes)
+            {
+                ofd.Filter = "JMDFile|*.jmd";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    BaseJMDFile.ApplyModification(ofd.FileName);
+
+                    Changed = false;
+
+                    e.Cancel = false;
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+            else
+            {
+                e.Cancel = false;
+            }
         }
     }
 }

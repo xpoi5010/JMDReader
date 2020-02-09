@@ -19,8 +19,16 @@ namespace Raycity.File
 
         public uint CryptInfomation { get; set; }
 
+        public bool NeedHash => (CryptInfomation & 1) == 1;
+
+        public bool NeedCrypt => (CryptInfomation & 4) == 4;
+
         //Adler32 Adler:0
         public uint Hash { get; set; }
+
+        public StreamMode StreamMode { get; set; } = StreamMode.JMDFile;
+
+        public object StreamAddition { get; set; }
 
         public JMDStreamInfo(byte[] data,byte[] key)
         {
@@ -42,7 +50,48 @@ namespace Raycity.File
                     System.Diagnostics.Debugger.Launch();
                 CryptInfomation = br.ReadUInt32();
                 Hash = br.ReadUInt32();
+                if (Hash != 0)
+                    System.Diagnostics.Debug.Print($"A:{Hash:000000000000}");
             }
         }
+
+        public byte[] ToByteArray(byte[] key)
+        {
+            byte[] output;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                BinaryWriter bw = new BinaryWriter(ms);
+                bw.Write(Index);
+                bw.Write(Offset>>8);
+                bw.Write(Size);
+                bw.Write(Size2);
+                bw.Write(CryptInfomation);
+                bw.Write(Hash);
+                bw.Write(new byte[8]);
+                output = ms.ToArray();
+            }
+            for (int i = 0; i < key.Length; i++)
+            {
+                output[i] = (byte)(output[i] ^ key[i]);
+            }
+            return output;
+        }
+
+    }
+
+    public enum StreamMode
+    {
+        JMDFile,Local
+    }
+
+    public class LocalStreamAddition
+    {
+        public uint Key { get; set; }
+
+        public string FileName { get; set; }
+
+        public int Offset { get; set; }
+
+        public int Length { get; set; }
     }
 }

@@ -24,7 +24,7 @@
         },
         {
             "Name": "menu_saveas",
-            "Value": "SaveAs (Is unsupport now)"
+            "Value": "SaveAs"
         },
         {
             "Name": "menu_exit",
@@ -81,6 +81,30 @@
         {
             "Name":"msg_cancelExport",
             "Value":"Do you want to cancel export?\r\nPress [Yes] to cancel\r\nPress [No] to continue."
-        }
+        },
+		{
+            "Name":"filemenu_modify",
+            "Value":"Modify this file"
+        },
+		{
+            "Name":"message_filemodified",
+            "Value":"Before previewing this file,please save this modified JMD File."
+        },
+		{
+            "Name":"message_filemodified_export",
+            "Value":"Before exporting this file,please save this modified JMD File."
+        },
+		{
+            "Name":"message_foldermodified_export",
+            "Value":"Before exporting this folder,please save this modified JMD File."
+        },
+		{
+            "Name":"msg_saveMsg",
+            "Value":"Do you want to save this modified file?JMD Loader will reload the new File after saving.\r\n\r\nPress [Yes] to save\r\nPress [No] to cancel"
+        },
+		{
+            "Name":"msg_exitsaving",
+            "Value":"Do you want to save this modified file before exiting?\r\n\r\nPress [Yes] to save\r\nPress [No] to exit."
+        },
     ]
 }

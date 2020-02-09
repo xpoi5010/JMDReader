@@ -52,7 +52,8 @@
             this.label2.Size = new System.Drawing.Size(545, 85);
             this.label2.TabIndex = 1;
             this.label2.Text = "JMD Loader is a tool which helps you to explore the files included in JMD Type Fi" +
-    "le. \r\n\r\nVersion : 1.0\r\nAuthor: eP Game Studio\r\nLicense: GPL v3";
+    "le. \r\n\r\nVersion : {0}.{1}.{2}{3}\r\nAuthor: eP Game Studio\r\nLicense: GPL v3";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // button1
             // 

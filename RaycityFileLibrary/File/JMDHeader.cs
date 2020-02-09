@@ -21,6 +21,13 @@ namespace Raycity.File
         public uint Hash;
 
         public uint b;
+
+        public uint c;
+
+        public byte d;
+
+
+
         public JMDHeader(byte[] data,uint HeaderKey)
         {
             byte[] newData = Crypt.JMDCrypt.Decrypt(data, HeaderKey);
@@ -37,7 +44,33 @@ namespace Raycity.File
                 this.StreamInfoCount = br.ReadUInt32();
                 b = br.ReadUInt32();
                 this.StreamInfosKey = br.ReadBytes(32);
+                c = br.ReadUInt32();
+                d = br.ReadByte();
             }
+        }
+
+        public byte[] ToByteArray(uint HeaderKey)
+        {
+            byte[] data2;//0x7C
+            using (MemoryStream ms = new MemoryStream())
+            {
+                BinaryWriter bw = new BinaryWriter(ms);
+                bw.Write(Check);
+                bw.Write(this.StreamInfoCount);
+                bw.Write(b);
+                bw.Write(StreamInfosKey);
+                bw.Write(c);
+                bw.Write(d);
+                bw.Write(new byte[75]);
+                data2 = ms.ToArray();
+            }
+            uint Hash = Adler.Adler32(0, data2, 0, data2.Length);
+            byte[] data1 = BitConverter.GetBytes(Hash);
+            byte[] output = new byte[0x80];
+            Array.Copy(data1, 0, output, 0, data1.Length);
+            Array.Copy(data2, 0, output, data1.Length, data2.Length);
+            output = Crypt.JMDCrypt.Decrypt(output, HeaderKey);
+            return output;
         }
     }
 }
