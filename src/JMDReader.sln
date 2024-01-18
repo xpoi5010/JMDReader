@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34321.82
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCityLibrary", "RayCityLibrary\RayCityLibrary.csproj", "{8272F003-A4CC-419F-8B4A-B315F9796716}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JmdLoader", "JmdLoader\JmdLoader.csproj", "{F8EF790B-04B7-4174-80A5-F23EF577D315}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8272F003-A4CC-419F-8B4A-B315F9796716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8272F003-A4CC-419F-8B4A-B315F9796716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8272F003-A4CC-419F-8B4A-B315F9796716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8272F003-A4CC-419F-8B4A-B315F9796716}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8EF790B-04B7-4174-80A5-F23EF577D315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8EF790B-04B7-4174-80A5-F23EF577D315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8EF790B-04B7-4174-80A5-F23EF577D315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8EF790B-04B7-4174-80A5-F23EF577D315}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0D57870-CCE6-4173-B9DD-E4D1951F7CC0}
+	EndGlobalSection
+EndGlobal

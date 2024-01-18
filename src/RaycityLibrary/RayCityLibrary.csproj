@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Raycity</RootNamespace>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <BaseOutputPath>..\..\out_pool\RaycityLibrary</BaseOutputPath>
+    <AssemblyVersion>24.2.31.1</AssemblyVersion>
+    <FileVersion>24.2.31.1</FileVersion>
+    <SignAssembly>False</SignAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetZip" Version="1.16.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>
